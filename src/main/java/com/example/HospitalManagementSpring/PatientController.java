@@ -57,17 +57,54 @@ public class PatientController {
         }
         return null;
     }
+    @GetMapping("/getInfoViaPathVariable/{patientId}/{disease}")
+    public List<Patient> getPatientInfo(@PathVariable("age")Integer age,@PathVariable("disease")String disease){
+        List<Patient> patients = new ArrayList<>();
+
+        for(Patient p : patientDB.values()){
+             if(p.getAge()>age && p.getDisease().equals(disease)){
+            patients.add(p);
+            }
+        }
+        return patients;
+    }
     @GetMapping("/getPatientsListGreaterThanAge")
-    public List<Patient> getPatientsGreaterThanAge(@RequestParam("age")Integer age){
+    public List<Patient> getPatientsGreaterThanAge(@RequestParam("age")Integer age) {
 
         List<Patient> patients = new ArrayList<>();
 
-        for(Patient p:patientDB.values()){
+        for (Patient p : patientDB.values()) {
 
-            if(p.getAge()>age){
+            if (p.getAge() > age) {
                 patients.add(p);
             }
         }
         return patients;
     }
+
+    @PutMapping("/updatePatientDetail")
+    public String updatePatientDetails(@RequestBody Patient patient){
+        int key = patient.getPatientId();
+
+        if(patientDB.containsKey(key)){
+            patientDB.put(key,patient);
+            return "Updated";
+        }else{
+            return "Data not exist";
+        }
+    }
+    @PutMapping("/updateDisease")
+    public String updateDisease(@RequestParam("patientId") int patientId,@RequestParam("disease")String disease){
+        Patient p = patientDB.get(patientId);
+
+        int key = p.getPatientId();
+        if(patientDB.containsKey(key)){
+            p.setDisease(disease);
+            patientDB.put(key,p);
+            return "Updated";
+        }else{
+            return "Data not exist";
+        }
+    }
+
 }
