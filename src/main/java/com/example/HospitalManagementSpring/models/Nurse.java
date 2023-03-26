@@ -1,4 +1,4 @@
-package com.example.HospitalManagementSpring;
+package com.example.HospitalManagementSpring.models;
 
 public class Nurse {
 

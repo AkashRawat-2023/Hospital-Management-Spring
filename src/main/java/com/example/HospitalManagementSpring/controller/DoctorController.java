@@ -1,5 +1,6 @@
-package com.example.HospitalManagementSpring;
+package com.example.HospitalManagementSpring.controller;
 
+import com.example.HospitalManagementSpring.models.Doctor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 
 public class DoctorController {
 
-    HashMap<Integer,Doctor> doctorDb = new HashMap<>();
+    HashMap<Integer, Doctor> doctorDb = new HashMap<>();
 
     @PostMapping("/add")
     public String addDoctor(@RequestBody Doctor doctor){

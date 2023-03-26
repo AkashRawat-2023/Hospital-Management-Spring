@@ -1,5 +1,8 @@
-package com.example.HospitalManagementSpring;
+package com.example.HospitalManagementSpring.service;
 
+import com.example.HospitalManagementSpring.models.Nurse;
+import com.example.HospitalManagementSpring.repository.NurseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,7 +11,8 @@ import java.util.List;
 @Service
 public class NurseService {
 
-    NurseRepository nurseRepository = new NurseRepository();
+    @Autowired
+    NurseRepository nurseRepository;
     public String addNurse(Nurse nurse){
 
         //We should write some logic :

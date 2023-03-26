@@ -1,6 +1,9 @@
-package com.example.HospitalManagementSpring;
+package com.example.HospitalManagementSpring.controller;
 
 
+import com.example.HospitalManagementSpring.models.Nurse;
+import com.example.HospitalManagementSpring.service.NurseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +13,15 @@ import java.util.List;
 
 public class NurseController {
 
-    NurseService nurseService = new NurseService();
+    @Autowired
+    NurseService nurseService;
+
+    //checking reusability of object
+    @GetMapping("/checkObject")
+    public String checkObject(){
+        System.out.println("The nurse object in Clinic Controller "+nurseService);
+        return null;
+    }
     @PostMapping("/add")
     public String addNurse(@RequestBody Nurse nurse){
 
